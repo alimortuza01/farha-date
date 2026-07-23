@@ -1,175 +1,329 @@
-* {
+*{
 
-    box-sizing: border-box;
+    margin:0;
 
-    margin: 0;
+    padding:0;
 
-    padding: 0;
+    box-sizing:border-box;
 
-    font-family: "Poppins", sans-serif;
-
-}
-
-body {
-
-    min-height: 100vh;
-
-    background: linear-gradient(135deg, #ffd6e8, #e8d7ff, #fff1dc);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    overflow: hidden;
-
-    color: #5b3a4d;
+    font-family:'Poppins', sans-serif;
 
 }
 
-.container, #page2, #page3, #final {
+body{
 
-    width: 90%;
+    min-height:100vh;
 
-    max-width: 420px;
+    display:flex;
 
-    padding: 35px 25px;
+    justify-content:center;
 
-    background: rgba(255,255,255,0.45);
+    align-items:center;
 
-    backdrop-filter: blur(12px);
+    overflow:hidden;
 
-    border-radius: 25px;
+    background:
 
-    text-align: center;
+    linear-gradient(135deg,
 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    #ffd6e8,
 
-    animation: fadeIn 1s ease;
+    #e8dcff,
 
-}
+    #fff1d6);
 
-h1 {
-
-    font-size: 32px;
-
-    margin-bottom: 20px;
+    color:#5a4050;
 
 }
 
-h2 {
+/* Moving soft background */
 
-    margin: 20px 0;
+body::before{
 
-}
+content:"";
 
-p {
+position:absolute;
 
-    font-size: 17px;
+width:500px;
 
-    line-height: 1.7;
+height:500px;
 
-    margin-bottom: 25px;
+background:
 
-}
+radial-gradient(circle,
 
-button {
+rgba(255,255,255,.7),
 
-    border: none;
+transparent 70%);
 
-    padding: 13px 25px;
-
-    border-radius: 30px;
-
-    margin: 8px;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    background: white;
-
-    color: #7a4561;
-
-    transition: 0.3s;
+animation:move 10s infinite alternate;
 
 }
 
-button:hover {
+@keyframes move{
 
-    transform: scale(1.08);
+from{
 
-}
-
-.yes {
-
-    background: #b8f2c8;
+transform:translate(-80px,-50px);
 
 }
 
-#noBtn {
+to{
 
-    background: #ffc6d9;
-
-    position: relative;
+transform:translate(80px,70px);
 
 }
 
-.hidden {
+}
 
-    display: none;
+/* Music button */
+
+#musicBtn{
+
+position:fixed;
+
+top:25px;
+
+right:25px;
+
+width:45px;
+
+height:45px;
+
+border:none;
+
+border-radius:50%;
+
+background:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.15);
+
+z-index:5;
 
 }
 
-@keyframes fadeIn {
+/* Card */
 
-    from {
+.card{
 
-        opacity: 0;
+display:none;
 
-        transform: translateY(30px);
+width:90%;
 
-    }
+max-width:420px;
 
-    to {
+padding:40px 30px;
 
-        opacity: 1;
+background:
 
-        transform: translateY(0);
+rgba(255,255,255,.45);
 
-    }
+backdrop-filter:blur(18px);
 
-}
+border-radius:30px;
 
-/* Floating hearts */
+text-align:center;
 
-body::before {
+box-shadow:
 
-    content: "🌸 💕 ✨ 🌷 💗";
+0 20px 50px rgba(0,0,0,.12);
 
-    position: absolute;
-
-    font-size: 35px;
-
-    animation: float 12s infinite linear;
-
-    opacity: 0.5;
+animation:show .8s ease;
 
 }
 
-@keyframes float {
+.card.active{
 
-    0% {
+display:block;
 
-        transform: translateY(100vh);
+}
 
-    }
+@keyframes show{
 
-    100% {
+from{
 
-        transform: translateY(-100vh);
+opacity:0;
 
-    }
+transform:
+
+translateY(40px)
+
+scale(.95);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0)
+
+scale(1);
+
+}
+
+}
+
+h1{
+
+font-size:32px;
+
+margin-bottom:20px;
+
+color:#8b5572;
+
+}
+
+p{
+
+font-size:17px;
+
+line-height:1.8;
+
+margin-bottom:25px;
+
+}
+
+/* Buttons */
+
+button{
+
+border:none;
+
+padding:14px 25px;
+
+border-radius:40px;
+
+font-size:16px;
+
+cursor:pointer;
+
+background:white;
+
+color:#7a5065;
+
+transition:.35s;
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.12);
+
+}
+
+button:hover{
+
+transform:
+
+translateY(-5px)
+
+scale(1.05);
+
+}
+
+.yes{
+
+background:#c9f7d5;
+
+}
+
+#noBtn{
+
+background:#ffd1dc;
+
+position:relative;
+
+}
+
+#reaction{
+
+margin-top:15px;
+
+font-size:15px;
+
+color:#b45b7a;
+
+}
+
+/* Floating emojis */
+
+.background span{
+
+position:absolute;
+
+font-size:35px;
+
+opacity:.5;
+
+animation:float 12s linear infinite;
+
+}
+
+.background span:nth-child(1){
+
+left:10%;
+
+animation-delay:0s;
+
+}
+
+.background span:nth-child(2){
+
+left:40%;
+
+animation-delay:3s;
+
+}
+
+.background span:nth-child(3){
+
+left:70%;
+
+animation-delay:6s;
+
+}
+
+.background span:nth-child(4){
+
+left:85%;
+
+animation-delay:2s;
+
+}
+
+@keyframes float{
+
+0%{
+
+bottom:-10%;
+
+transform:
+
+rotate(0deg);
+
+}
+
+100%{
+
+bottom:110%;
+
+transform:
+
+rotate(360deg);
+
+}
+
+}
+
+.date-options button{
+
+margin:8px;
 
 }
