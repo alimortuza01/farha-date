@@ -2,23 +2,17 @@ let noCount = 0;
 
 let musicPlaying = false;
 
-// Change page
+// Page change
 
-function showPage(pageId) {
+function showPage(pageId){
 
-    document.querySelectorAll(".card").forEach(card => {
+    document.querySelectorAll(".card").forEach(card=>{
 
         card.classList.remove("active");
 
     });
 
-    const page = document.getElementById(pageId);
-
-    if(page){
-
-        page.classList.add("active");
-
-    }
+    document.getElementById(pageId).classList.add("active");
 
 }
 
@@ -36,21 +30,21 @@ function toggleMusic(){
 
         music.pause();
 
-        musicPlaying = false;
+        btn.innerHTML="🎵";
 
-        btn.innerHTML = "🎵";
+        musicPlaying=false;
 
     }
 
     else{
 
-        music.volume = 0.35;
+        music.volume=0.35;
 
         music.play();
 
-        musicPlaying = true;
+        btn.innerHTML="🔊";
 
-        btn.innerHTML = "🔊";
+        musicPlaying=true;
 
     }
 
@@ -62,7 +56,7 @@ function hmmClick(){
 
     document.getElementById("reaction").innerHTML =
 
-    "Take your time 🤍 I will wait 😊";
+    "No worries 🤍 Take your time 😊";
 
 }
 
@@ -70,25 +64,33 @@ function hmmClick(){
 
 function noClick(){
 
-    const btn = document.getElementById("noBtn");
+    const noBtn =
 
-    const reaction = document.getElementById("reaction");
+    document.getElementById("noBtn");
 
-    const messages = [
+    const reaction =
 
-        "Are you sure? 👀",
+    document.getElementById("reaction");
 
-        "Think again 🌸",
+    const messages=[
 
-        "Don't dare to press again 😭",
+    "Are you sure? 👀",
 
-        "This button is scared 😆",
+    "Think again 🌸",
 
-        "Nice try 🤭",
+    "Don't dare to press again 😭",
 
-        "Maybe your heart says yes? 💗",
+    "This button is getting scared 😆",
 
-        "Wrong button detected 😂"
+    "Nice try 🤭",
+
+    "Maybe your heart says yes? 💗",
+
+    "Wrong button detected 😂",
+
+    "Okay... the No button is running away now 🏃‍♂️",
+
+    "I think you clicked the wrong one 😌"
 
     ];
 
@@ -98,13 +100,23 @@ function noClick(){
 
     noCount++;
 
-    let x = Math.random() * 200 - 100;
+    let x =
 
-    let y = Math.random() * 120 - 60;
+    Math.random()*250-125;
 
-    btn.style.transform =
+    let y =
 
-    `translate(${x}px, ${y}px)`;
+    Math.random()*160-80;
+
+    noBtn.style.transform =
+
+    `translate(${x}px,${y}px)`;
+
+    if(noCount >= 5){
+
+        noBtn.innerHTML="No? Really? 😭";
+
+    }
 
 }
 
@@ -120,19 +132,23 @@ function yesClick(){
 
     .classList.add("active");
 
-    hearts();
+    createHearts();
 
 }
 
-// Heart effect
+// Heart animation
 
-function hearts(){
+function createHearts(){
 
-    for(let i=0;i<40;i++){
+    for(let i=0;i<50;i++){
 
         let heart=document.createElement("div");
 
-        heart.innerHTML="💗";
+        heart.innerHTML =
+
+        ["💗","💕","✨","🌸"]
+
+        [Math.floor(Math.random()*4)];
 
         heart.style.position="fixed";
 
@@ -140,11 +156,11 @@ function hearts(){
 
         Math.random()*100+"vw";
 
-        heart.style.bottom="0";
+        heart.style.bottom="-20px";
 
         heart.style.fontSize =
 
-        (15+Math.random()*20)+"px";
+        15+Math.random()*25+"px";
 
         heart.style.animation =
 
