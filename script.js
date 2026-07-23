@@ -1,90 +1,192 @@
-function nextPage() {
+let noCount = 0;
 
-    document.querySelector(".container").style.display = "none";
+let musicPlaying = false;
 
-    document.getElementById("page2").style.display = "block";
+// Page change with smooth effect
 
-}
+function showPage(pageId){
 
-function nextPage2() {
+    document.querySelectorAll(".card").forEach(card=>{
 
-    document.getElementById("page2").style.display = "none";
+        card.classList.remove("active");
 
-    document.getElementById("page3").style.display = "block";
+    });
 
-}
+    const page = document.getElementById(pageId);
 
-function yesClick() {
-
-    document.getElementById("page3").style.display = "none";
-
-    document.getElementById("final").style.display = "block";
-
-    createHearts();
+    page.classList.add("active");
 
 }
 
-function hmmClick() {
+// Background music
 
-    alert("No pressure at all 😊 Take your time. I just wanted you to know how I feel 🌸");
+function toggleMusic(){
+
+    const music = document.getElementById("bgMusic");
+
+    const btn = document.getElementById("musicBtn");
+
+    if(!musicPlaying){
+
+        music.volume = 0.35;
+
+        music.play()
+
+        .then(()=>{
+
+            btn.innerHTML="🔊";
+
+            musicPlaying=true;
+
+        })
+
+        .catch(()=>{
+
+            btn.innerHTML="🎵";
+
+        });
+
+    }else{
+
+        music.pause();
+
+        btn.innerHTML="🎵";
+
+        musicPlaying=false;
+
+    }
 
 }
 
-// No button moving effect
+// Hmm option
 
-function moveNo() {
+function hmmClick(){
 
-    let button = document.getElementById("noBtn");
+    const reaction =
 
-    let x = Math.random() * 250 - 125;
+    document.getElementById("reaction");
 
-    let y = Math.random() * 200 - 100;
+    reaction.innerHTML =
 
-    button.style.transform =
+    "No worries 😊 Take your time... 🌸";
 
-        `translate(${x}px, ${y}px)`;
+}
 
-    let messages = [
+// Impossible No button
 
-        "Are you sure? 👀",
+function noClick(){
 
-        "Give it another thought 🌸",
+    const btn =
 
-        "This button is shy today 😆",
+    document.getElementById("noBtn");
 
-        "Maybe try again? 💕"
+    const reaction =
+
+    document.getElementById("reaction");
+
+    const messages=[
+
+    "Are you sure? 👀",
+
+    "Think again 🌸",
+
+    "Don't dare to press again 😭",
+
+    "This button is losing confidence 😆",
+
+    "Nice try... but I'm moving 🤭",
+
+    "Maybe your heart says yes? 💗",
+
+    "Wrong button detected 😂",
+
+    "The No button wants to escape 🏃‍♂️"
 
     ];
 
-    button.innerHTML =
+    reaction.innerHTML =
 
-        messages[Math.floor(Math.random() * messages.length)];
+    messages[noCount % messages.length];
+
+    noCount++;
+
+    const maxX =
+
+    window.innerWidth/2 - 120;
+
+    const maxY =
+
+    window.innerHeight/2 - 80;
+
+    const x =
+
+    Math.random()*maxX - maxX/2;
+
+    const y =
+
+    Math.random()*maxY - maxY/2;
+
+    btn.style.transform =
+
+    `translate(${x}px,${y}px) rotate(${Math.random()*20-10}deg)`;
+
+    btn.innerHTML =
+
+    noCount > 3 ?
+
+    "Really? 😭" :
+
+    "No 🙃";
 
 }
 
-// Floating hearts after yes
+// Yes button
 
-function createHearts(){
+function yesClick(){
 
-    for(let i = 0; i < 25; i++){
+    document.getElementById("page3")
 
-        let heart = document.createElement("div");
+    .classList.remove("active");
 
-        heart.innerHTML = "❤️";
+    document.getElementById("final")
 
-        heart.style.position = "fixed";
+    .classList.add("active");
 
-        heart.style.left = Math.random()*100 + "vw";
+    heartExplosion();
 
-        heart.style.bottom = "0";
+}
+
+// Heart explosion
+
+function heartExplosion(){
+
+    for(let i=0;i<60;i++){
+
+        const heart =
+
+        document.createElement("div");
+
+        heart.innerHTML =
+
+        ["💗","💕","❤️","✨"][Math.floor(Math.random()*4)];
+
+        heart.style.position="fixed";
+
+        heart.style.left =
+
+        Math.random()*100+"vw";
+
+        heart.style.bottom="-20px";
 
         heart.style.fontSize =
 
-            (Math.random()*20 + 15) + "px";
+        (15+Math.random()*30)+"px";
 
         heart.style.animation =
 
-            "rise 5s linear";
+        "rise 5s ease forwards";
+
+        heart.style.pointerEvents="none";
 
         document.body.appendChild(heart);
 
