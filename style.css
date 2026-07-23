@@ -1,0 +1,175 @@
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family: "Poppins", sans-serif;
+
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: linear-gradient(135deg, #ffd6e8, #e8d7ff, #fff1dc);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    color: #5b3a4d;
+
+}
+
+.container, #page2, #page3, #final {
+
+    width: 90%;
+
+    max-width: 420px;
+
+    padding: 35px 25px;
+
+    background: rgba(255,255,255,0.45);
+
+    backdrop-filter: blur(12px);
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+
+    animation: fadeIn 1s ease;
+
+}
+
+h1 {
+
+    font-size: 32px;
+
+    margin-bottom: 20px;
+
+}
+
+h2 {
+
+    margin: 20px 0;
+
+}
+
+p {
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+}
+
+button {
+
+    border: none;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    margin: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: #7a4561;
+
+    transition: 0.3s;
+
+}
+
+button:hover {
+
+    transform: scale(1.08);
+
+}
+
+.yes {
+
+    background: #b8f2c8;
+
+}
+
+#noBtn {
+
+    background: #ffc6d9;
+
+    position: relative;
+
+}
+
+.hidden {
+
+    display: none;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* Floating hearts */
+
+body::before {
+
+    content: "🌸 💕 ✨ 🌷 💗";
+
+    position: absolute;
+
+    font-size: 35px;
+
+    animation: float 12s infinite linear;
+
+    opacity: 0.5;
+
+}
+
+@keyframes float {
+
+    0% {
+
+        transform: translateY(100vh);
+
+    }
+
+    100% {
+
+        transform: translateY(-100vh);
+
+    }
+
+}
