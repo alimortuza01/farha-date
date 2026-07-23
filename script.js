@@ -2,11 +2,11 @@ let noCount = 0;
 
 let musicPlaying = false;
 
-// Page change with smooth effect
+// Change page
 
-function showPage(pageId){
+function showPage(pageId) {
 
-    document.querySelectorAll(".card").forEach(card=>{
+    document.querySelectorAll(".card").forEach(card => {
 
         card.classList.remove("active");
 
@@ -14,11 +14,15 @@ function showPage(pageId){
 
     const page = document.getElementById(pageId);
 
-    page.classList.add("active");
+    if(page){
+
+        page.classList.add("active");
+
+    }
 
 }
 
-// Background music
+// Music
 
 function toggleMusic(){
 
@@ -26,81 +30,65 @@ function toggleMusic(){
 
     const btn = document.getElementById("musicBtn");
 
-    if(!musicPlaying){
+    if(!music) return;
 
-        music.volume = 0.35;
-
-        music.play()
-
-        .then(()=>{
-
-            btn.innerHTML="🔊";
-
-            musicPlaying=true;
-
-        })
-
-        .catch(()=>{
-
-            btn.innerHTML="🎵";
-
-        });
-
-    }else{
+    if(musicPlaying){
 
         music.pause();
 
-        btn.innerHTML="🎵";
+        musicPlaying = false;
 
-        musicPlaying=false;
+        btn.innerHTML = "🎵";
+
+    }
+
+    else{
+
+        music.volume = 0.35;
+
+        music.play();
+
+        musicPlaying = true;
+
+        btn.innerHTML = "🔊";
 
     }
 
 }
 
-// Hmm option
+// Hmm button
 
 function hmmClick(){
 
-    const reaction =
+    document.getElementById("reaction").innerHTML =
 
-    document.getElementById("reaction");
-
-    reaction.innerHTML =
-
-    "No worries 😊 Take your time... 🌸";
+    "Take your time 🤍 I will wait 😊";
 
 }
 
-// Impossible No button
+// No button
 
 function noClick(){
 
-    const btn =
+    const btn = document.getElementById("noBtn");
 
-    document.getElementById("noBtn");
+    const reaction = document.getElementById("reaction");
 
-    const reaction =
+    const messages = [
 
-    document.getElementById("reaction");
+        "Are you sure? 👀",
 
-    const messages=[
+        "Think again 🌸",
 
-    "Are you sure? 👀",
+        "Don't dare to press again 😭",
 
-    "Think again 🌸",
+        "This button is scared 😆",
 
-    "Don't dare to press again 😭",
+        "Nice try 🤭",
 
-    "This button is losing confidence 😆",
+        "Maybe your heart says yes? 💗",
 
-    "Nice try... but I'm moving 🤭",
-
-    "Maybe your heart says yes? 💗",
-
-    "Wrong button detected 😂",
-
-    "The No button wants to escape 🏃‍♂️"
+        "Wrong button detected 😂"
 
     ];
 
@@ -110,33 +98,13 @@ function noClick(){
 
     noCount++;
 
-    const maxX =
+    let x = Math.random() * 200 - 100;
 
-    window.innerWidth/2 - 120;
-
-    const maxY =
-
-    window.innerHeight/2 - 80;
-
-    const x =
-
-    Math.random()*maxX - maxX/2;
-
-    const y =
-
-    Math.random()*maxY - maxY/2;
+    let y = Math.random() * 120 - 60;
 
     btn.style.transform =
 
-    `translate(${x}px,${y}px) rotate(${Math.random()*20-10}deg)`;
-
-    btn.innerHTML =
-
-    noCount > 3 ?
-
-    "Really? 😭" :
-
-    "No 🙃";
+    `translate(${x}px, ${y}px)`;
 
 }
 
@@ -152,23 +120,19 @@ function yesClick(){
 
     .classList.add("active");
 
-    heartExplosion();
+    hearts();
 
 }
 
-// Heart explosion
+// Heart effect
 
-function heartExplosion(){
+function hearts(){
 
-    for(let i=0;i<60;i++){
+    for(let i=0;i<40;i++){
 
-        const heart =
+        let heart=document.createElement("div");
 
-        document.createElement("div");
-
-        heart.innerHTML =
-
-        ["💗","💕","❤️","✨"][Math.floor(Math.random()*4)];
+        heart.innerHTML="💗";
 
         heart.style.position="fixed";
 
@@ -176,17 +140,15 @@ function heartExplosion(){
 
         Math.random()*100+"vw";
 
-        heart.style.bottom="-20px";
+        heart.style.bottom="0";
 
         heart.style.fontSize =
 
-        (15+Math.random()*30)+"px";
+        (15+Math.random()*20)+"px";
 
         heart.style.animation =
 
-        "rise 5s ease forwards";
-
-        heart.style.pointerEvents="none";
+        "rise 5s linear";
 
         document.body.appendChild(heart);
 
